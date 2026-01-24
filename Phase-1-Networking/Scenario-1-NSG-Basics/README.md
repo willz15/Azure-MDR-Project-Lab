@@ -7,6 +7,8 @@ The goal of this lab was to move beyond basic connectivity and implement Protoco
 **Architecture Overview**
 My topology consists of a single Virtual Network (vnet1) segmented into two functional subnets: FrontEnd (10.0.1.0/24) and Backend (10.0.2.0/24). By default, resources in these subnets can communicate freely. To implement Zero-Trust, I applied Network Security Groups (NSGs) directly at the subnet level.
 
+Phase-1-Networking/Scenario-1-NSG-Basics/Topology.png
+
 **The Execution & "The Struggle"**
 1. Securing the Perimeter
 Initially, I tried to SSH into my linux-frontend VM using its Public IP. It immediately denied access. I remembered I added a NSG to my FrontEnd Subnet.
@@ -21,7 +23,7 @@ Port: 22 (TCP)
 
 Action: Permit
 
-![Uploading Frontend-NSG.png…]()
+Phase-1-Networking/Scenario-1-NSG-Basics/Frontend-NSG.png
 
 
 2. Internal Protocol Isolation
@@ -32,13 +34,13 @@ Rule 100 DenySSH: Block all TCP on Port 22, in order to avoid lateral movement.
 
 Rule 110 AllowICMP: I allowed the traffic of ICMP so that the server could still be monitored via Ping.
 
-[insert image_15d780.png here]
+Phase-1-Networking/Scenario-1-NSG-Basics/Backend-NSG.png
 
 The Findings: Confirmation of Proof
 
 Once inside the linux-frontend VM, I did the final tests against the internal IP of the linux-backend: 10.0.2.4. SSH Test: The connection was refused as the DenySSH rule went into effect. Ping (ICMP) Test: This ping was successful, which validated that the AllowICMP rule was working.
 
-[Insert Ping.png here]
+Phase-1-Networking/Scenario-1-NSG-Basics/Ping.png
 
 ****Synthesis ****
 
