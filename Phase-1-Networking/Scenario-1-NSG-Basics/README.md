@@ -40,7 +40,10 @@ The Findings: Confirmation of Proof
 
 Once inside the linux-frontend VM, I did the final tests against the internal IP of the linux-backend: 10.0.2.4. SSH Test: The connection was refused as the DenySSH rule went into effect. Ping (ICMP) Test: This ping was successful, which validated that the AllowICMP rule was working.
 
+I also used network watcher IP flow and this determined SSH was denied by my NSG rule anmes DenySSH
+
 Phase-1-Networking/Scenario-1-NSG-Basics/Ping.png
+Phase-1-Networking/Scenario-1-NSG-Basics/networkwatcher-SSHDeny.png
 
 ****Synthesis ****
 
